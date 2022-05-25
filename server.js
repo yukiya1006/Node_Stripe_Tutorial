@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
 const PORT = 3000;
 const stripe = require('stripe')('sk_test_51L38ncGZTkvQE4e9LsIcM8OFQbClI2ZAtmbpP2n4ybhdNIJHzrigVk7bQ2astAJxqEdxVhumy9Gq00qqAeK4zP1l00U41zh1wQ');
 
@@ -29,4 +31,6 @@ app.post('/create-checkout-session', async(req, res) => {
   }
 });
 
-app.listen(PORT, console.log('サーバーが起動しました'));
+app.listen(process.env.PORT || 3000, () => {
+  console.log('サーバーが起動しました');
+});
